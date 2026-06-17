@@ -19,6 +19,7 @@ import {
   EditOutlined,
   PlusSquareOutlined,
   PlusOutlined,
+  MinusCircleOutlined,
   RightOutlined,
   PictureOutlined,
   DownloadOutlined,
@@ -26,7 +27,6 @@ import {
 import DiagnosisFormDrawer from '../components/DiagnosisFormDrawer'
 import DiagnosisFormFields, { enumLabels, diagnosisValuesChangeHandler } from '../components/DiagnosisFormFields'
 import TreatmentFormDrawer from '../components/TreatmentFormDrawer'
-import NeoadjuvantFormFields, { neoadjuvantEnumLabels, neoadjuvantValuesChangeHandler } from '../components/NeoadjuvantFormFields'
 import SurgeryFormDrawer from '../components/SurgeryFormDrawer'
 import RadiationFormDrawer from '../components/RadiationFormDrawer'
 import RecurrenceFormDrawer from '../components/RecurrenceFormDrawer'
@@ -104,108 +104,46 @@ const surgeryRecords = [
   },
 ]
 
-function renderNeoadjuvantRecord(record: (typeof neoadjuvantData.records)[number], idx: number) {
-  const typeLabel = neoadjuvantEnumLabels.treatType[record.treatType] || record.treatType
-  const drugs = record.treatType === 'chemo'
-    ? (record as { medicineList?: { medicineName: string; dose: number | null; unit: string }[] }).medicineList || []
-    : record.treatType === 'target'
-      ? (record as { targetMedicineList?: { medicineName: string; dose: number | null; unit: string }[] }).targetMedicineList || []
-      : (record as { endoMedicineList?: { medicineName: string; dose: number | null; unit: string }[] }).endoMedicineList || []
-  const planName = record.treatType === 'endo'
-    ? neoadjuvantEnumLabels.endoTreatName[(record as { endoTreatName?: string }).endoTreatName || ''] || (record as { endoTreatName?: string }).endoTreatName
-    : record.treatType === 'target'
-      ? neoadjuvantEnumLabels.targetTreatmentName[(record as { treatmentName?: string }).treatmentName || ''] || (record as { treatmentName?: string }).treatmentName
-      : neoadjuvantEnumLabels.chemoTreatmentName[(record as { treatmentName?: string }).treatmentName || ''] || (record as { treatmentName?: string }).treatmentName
+const treatmentColumns = [
+  { title: '序号', dataIndex: 'seq', key: 'seq', width: 60 },
+  { title: '输注时间', dataIndex: 'date', key: 'date', width: 120 },
+  { title: '药物', dataIndex: 'drug', key: 'drug' },
+  { title: '剂量', dataIndex: 'dose', key: 'dose', width: 80 },
+]
 
-  return (
-    <div key={idx} style={{ marginBottom: 16 }}>
-      <div style={{ fontWeight: 600, marginBottom: 8 }}>{typeLabel} - {planName}</div>
-      <div className="diagnosis-grid">
-        <div className="diag-row"><span className="diag-label">开始时间：</span><span>{record.date}</span></div>
-        <div className="diag-row"><span className="diag-label">结束时间：</span><span>{record.endDate}</span></div>
-        {record.treatType === 'chemo' && (
-          <div className="diag-row"><span className="diag-label">周期数：</span><span>{(record as { treatmentCount?: number }).treatmentCount}</span></div>
-        )}
-        <div className="diag-row">
-          <span className="diag-label">药物：</span>
-          <span>{drugs.map(d => `${d.medicineName}${d.dose ? ` ${d.dose}${d.unit}` : ''}`).join('、')}</span>
-        </div>
-        {record.treatType === 'chemo' && (record as { isUnionTarget?: number }).isUnionTarget === 1 && (
-          <>
-            <div className="diag-row"><span className="diag-label">联合靶向：</span><span>是</span></div>
-            <div className="diag-row"><span className="diag-label">靶向时间：</span><span>{(record as { targetDate?: string }).targetDate} ~ {(record as { targetEndDate?: string }).targetEndDate}</span></div>
-            <div className="diag-row">
-              <span className="diag-label">靶向药物：</span>
-              <span>{((record as { targetMedicineList?: { medicineName: string; dose: number | null; unit: string }[] }).targetMedicineList || []).map(d => d.medicineName).join('、')}</span>
-            </div>
-          </>
-        )}
-        {record.treatType === 'endo' && (
-          <>
-            <div className="diag-row"><span className="diag-label">卵巢抑制：</span><span>{neoadjuvantEnumLabels.ovaryControl[(record as { ovaryControl?: number }).ovaryControl ?? -1]}</span></div>
-            {(record as { ovaryControl?: number }).ovaryControl === 1 && (
-              <div className="diag-row"><span className="diag-label">抑制方式：</span><span>{(record as { ovaryControlMode?: string }).ovaryControlMode}</span></div>
-            )}
-          </>
-        )}
-        <div className="diag-row"><span className="diag-label">最佳疗效：</span><span>{neoadjuvantEnumLabels.progressresult[record.progressresult]}</span></div>
-        <div className="diag-row"><span className="diag-label">完成疗程：</span><span>{neoadjuvantEnumLabels.isComplete[record.isComplete]}</span></div>
-        {record.isComplete === 0 && record.incompleteReason != null && (
-          <div className="diag-row">
-            <span className="diag-label">未完成原因：</span>
-            <span>{record.incompleteReason === 9999 ? record.resultOtherValue : neoadjuvantEnumLabels.incompleteReason[record.incompleteReason]}</span>
-          </div>
-        )}
-        <div className="diag-row"><span className="diag-label">身高：</span><span>{record.height} CM</span></div>
-        <div className="diag-row"><span className="diag-label">体重：</span><span>{record.weight} KG</span></div>
-        <div className="diag-row"><span className="diag-label">PS评分：</span><span>{record.ps}</span></div>
-      </div>
-    </div>
-  )
-}
+const evaluationColumns = [
+  { title: '序号', dataIndex: 'seq', key: 'seq', width: 60 },
+  { title: '评估时间', dataIndex: 'date', key: 'date', width: 120 },
+  { title: '评估结果', dataIndex: 'result', key: 'result', width: 100 },
+  { title: '靶病灶评估', dataIndex: 'target', key: 'target' },
+]
 
 const neoadjuvantData = {
-  records: [
+  courses: [
     {
-      treatType: 'chemo' as string,
-      date: '2003-01-03',
-      endDate: '2003-05-24',
-      treatmentName: 'AC_TH',
-      otherTreatmentName: '',
-      isUnionTarget: 1,
-      treatmentCount: 6,
-      medicineList: [
-        { medicineName: '表柔比星', dose: 150, unit: 'mg' },
-        { medicineName: '环磷酰胺', dose: 100, unit: 'mg' },
-        { medicineName: '多西他赛', dose: 150, unit: 'mg' },
+      name: '新辅助治疗1',
+      plan: 'AP',
+      method: '内分泌治疗',
+      drugMethod: '静脉输注',
+      drugs: [
+        { key: '1', seq: 1, date: '2019-06-18', drug: '卡铂他滨', dose: '24ml' },
+        { key: '1b', seq: '', date: '', drug: 'xxxxxx', dose: '24ml' },
+        { key: '2', seq: 2, date: '2019-07-02', drug: '卡铂他滨', dose: '24ml' },
       ],
-      targetDate: '2003-01-03',
-      targetEndDate: '2003-05-24',
-      targetMedicineList: [{ medicineName: '曲妥珠单抗', dose: null, unit: '' }],
-      progressresult: 3,
-      isComplete: 1,
-      incompleteReason: null as number | null,
-      resultOtherValue: '',
-      height: 162,
-      weight: 58,
-      ps: 1,
-    },
-    {
-      treatType: 'endo' as string,
-      date: '2003-05-23',
-      endDate: '2003-07-07',
-      endoTreatName: 'AI',
-      otherTreatmentName: '',
-      endoMedicineList: [{ medicineName: '来曲唑', dose: null, unit: '' }],
-      ovaryControl: 1,
-      ovaryControlMode: '手术',
-      progressresult: 3,
-      isComplete: 0,
-      incompleteReason: 2,
-      resultOtherValue: '',
-      height: 162,
-      weight: 58,
-      ps: 1,
+      oralDrugs: [
+        { key: '1', seq: 1, date: '2019-06-18', drug: '卡铂他滨', dose: '24ml' },
+        { key: '1b', seq: '', date: '', drug: 'xxxxxx', dose: '24ml' },
+        { key: '2', seq: 2, date: '2019-07-02', drug: '卡铂他滨', dose: '24ml' },
+      ],
+      evaluations: [
+        { key: '1', seq: 1, date: '2019-06-18', result: 'SD', target: 'XXXXX' },
+        { key: '2', seq: 2, date: '2019-07-02', result: 'PD', target: 'XXXXX' },
+      ],
+      hasAE: '有',
+      aeType: '血液毒性',
+      aeEvents: [
+        { key: '1', type: '血液毒性', category: 'xxxxxx', date: '2019-07-02', level: 'N/度', returnDate: '2019-07-02', drug: '卡铂他滨' },
+      ],
     },
   ],
 }
@@ -284,18 +222,28 @@ function renderSectionPreview(section: PreviewSection) {
         </div>
       )
     case 'neoadjuvant':
-      return (
-        <div>
-          {neoadjuvantData.records.map((record, idx) => renderNeoadjuvantRecord(record, idx))}
-        </div>
-      )
     case 'adjuvant':
-    case 'salvage':
+    case 'salvage': {
+      const label = section === 'neoadjuvant' ? '新辅助治疗' : section === 'adjuvant' ? '辅助治疗' : '解救治疗'
       return (
         <div>
-          <Empty description="暂无记录" image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          {neoadjuvantData.courses.map((course, idx) => (
+            <div key={idx} className="treatment-course">
+              <div className="course-name">{label}{idx + 1}</div>
+              <div className="course-meta">
+                <span>治疗方案：{course.plan}</span>
+                <span>治疗方式：{course.method}</span>
+                <span>用药方式：{course.drugMethod}</span>
+              </div>
+              <Table columns={treatmentColumns} dataSource={course.drugs} pagination={false} size="small" bordered className="compact-table" />
+              <div className="sub-title">疗效评估</div>
+              <Table columns={evaluationColumns} dataSource={course.evaluations} pagination={false} size="small" bordered className="compact-table" />
+              <div className="ae-info"><span>有无III度及以上AE事件：{course.hasAE}</span></div>
+            </div>
+          ))}
         </div>
       )
+    }
     case 'surgery':
       return (
         <div>
@@ -436,6 +384,7 @@ export default function PatientDetail() {
       case 'adjuvant':
       case 'salvage': {
         const treatLabel = previewSection === 'neoadjuvant' ? '新辅助治疗' : previewSection === 'adjuvant' ? '辅助治疗' : '解救治疗'
+        const methodOptions = ['化疗', '靶向', '免疫治疗', '放疗', '内分泌治疗']
         return (
           <>
             <Tabs
@@ -446,8 +395,89 @@ export default function PatientDetail() {
               items={editTabs.map(t => ({ key: t, label: `${treatLabel}${t}`, closable: editTabs.length > 1 }))}
               tabBarExtraContent={<Button type="text" icon={<PlusOutlined />} onClick={addEditTab} size="small" />}
             />
-            <Form form={editForm} layout="vertical" style={{ marginTop: 16 }} onValuesChange={(changed) => neoadjuvantValuesChangeHandler(editForm, changed)}>
-              <NeoadjuvantFormFields form={editForm} />
+            <Form form={editForm} layout="vertical" style={{ marginTop: 16 }}>
+              <div className="drawer-form-section"><span className="section-label">治疗方案</span><Form.Item name="plan"><Input placeholder="请输入" /></Form.Item></div>
+              <div className="drawer-form-section"><span className="section-label">治疗方式</span><Form.Item name="method"><Checkbox.Group options={methodOptions} /></Form.Item></div>
+              <div className="drawer-form-section"><span className="section-label">用药方式</span><Form.Item name="drugMethod"><Checkbox.Group options={['静脉输注', '口服', '组合']} /></Form.Item></div>
+              <Form.List name="sessions">
+                {(fields, { add, remove }) => (
+                  <>
+                    {fields.map(({ key, name }) => (
+                      <div key={key} style={{ border: '1px solid #f0f0f0', borderRadius: 8, padding: 16, marginBottom: 12 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                          <div style={{ background: '#fafafa', padding: '4px 12px', borderRadius: 4, fontSize: 13 }}>第{name + 1}次输注</div>
+                          <Form.Item name={[name, 'date']} noStyle><DatePicker placeholder="请选择" style={{ flex: 1 }} /></Form.Item>
+                          <Button type="text" danger icon={<MinusCircleOutlined />} onClick={() => remove(name)} />
+                        </div>
+                        <Form.List name={[name, 'drugs']}>
+                          {(drugFields, drugOps) => (
+                            <>
+                              {drugFields.map(({ key: dk, name: dn }) => (
+                                <div key={dk} style={{ display: 'flex', gap: 8, marginBottom: 8, alignItems: 'center' }}>
+                                  <span style={{ color: '#ccc', fontSize: 18 }}>•</span>
+                                  <div style={{ background: '#fafafa', padding: '4px 8px', borderRadius: 4, fontSize: 13, flexShrink: 0 }}>药物{dn + 1}</div>
+                                  <Form.Item name={[dn, 'name']} noStyle><Input placeholder="请输入" /></Form.Item>
+                                  <div style={{ background: '#fafafa', padding: '4px 8px', borderRadius: 4, fontSize: 13, flexShrink: 0 }}>剂量</div>
+                                  <Form.Item name={[dn, 'dose']} noStyle><Input placeholder="请输入" style={{ width: 100 }} /></Form.Item>
+                                  <Button type="text" danger icon={<MinusCircleOutlined />} onClick={() => drugOps.remove(dn)} />
+                                </div>
+                              ))}
+                              <Button type="link" icon={<PlusSquareOutlined />} onClick={() => drugOps.add()} size="small">添加药物</Button>
+                            </>
+                          )}
+                        </Form.List>
+                      </div>
+                    ))}
+                    <Button type="link" icon={<PlusSquareOutlined />} onClick={() => add({ drugs: [{}] })} block style={{ marginBottom: 24 }}>添加输注时间</Button>
+                  </>
+                )}
+              </Form.List>
+              <div className="drawer-form-section">
+                <span className="section-label">疗效评估</span>
+                <Form.List name="evaluations">
+                  {(fields, { add, remove }) => (
+                    <>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 2fr 40px', gap: 8, marginBottom: 8 }}>
+                        <div style={{ fontSize: 12, color: '#999' }}>评估时间</div><div style={{ fontSize: 12, color: '#999' }}>评估结果</div><div style={{ fontSize: 12, color: '#999' }}>靶病灶评估</div><div />
+                      </div>
+                      {fields.map(({ key, name }) => (
+                        <div key={key} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 2fr 40px', gap: 8, marginBottom: 8 }}>
+                          <Form.Item name={[name, 'date']} noStyle><DatePicker placeholder="请选择" style={{ width: '100%' }} /></Form.Item>
+                          <Form.Item name={[name, 'result']} noStyle><Input placeholder="请选择" /></Form.Item>
+                          <Form.Item name={[name, 'target']} noStyle><Input placeholder="请输入" /></Form.Item>
+                          <Button type="text" danger icon={<MinusCircleOutlined />} onClick={() => remove(name)} />
+                        </div>
+                      ))}
+                      <Button type="link" icon={<PlusSquareOutlined />} onClick={() => add()} size="small">添加评估</Button>
+                    </>
+                  )}
+                </Form.List>
+              </div>
+              <div className="drawer-form-section"><span className="section-label">有无III度及以上AE事件</span><Form.Item name="hasAE"><Checkbox.Group options={['有', '无']} /></Form.Item></div>
+              <div className="drawer-form-section"><span className="section-label">III度及以上AE事件</span><Form.Item name="aeTypes"><Checkbox.Group><Checkbox value="血液毒性">血液毒性</Checkbox><Checkbox value="肠胃毒性">肠胃毒性</Checkbox><Checkbox value="item03">item03</Checkbox><Checkbox value="item04">item04</Checkbox><Checkbox value="item05">item05</Checkbox><Checkbox value="item06">item06</Checkbox></Checkbox.Group></Form.Item></div>
+              <div className="drawer-form-section">
+                <span className="section-label">血液毒性</span>
+                <Form.List name="aeDetails">
+                  {(fields, { add, remove }) => (
+                    <>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 0.8fr 1fr 1.2fr 40px', gap: 8, marginBottom: 8 }}>
+                        <div style={{ fontSize: 12, color: '#999' }}>类别</div><div style={{ fontSize: 12, color: '#999' }}>发生日期</div><div style={{ fontSize: 12, color: '#999' }}>级别</div><div style={{ fontSize: 12, color: '#999' }}>转归日期</div><div style={{ fontSize: 12, color: '#999' }}>合并用药</div><div />
+                      </div>
+                      {fields.map(({ key, name }) => (
+                        <div key={key} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 0.8fr 1fr 1.2fr 40px', gap: 8, marginBottom: 8 }}>
+                          <Form.Item name={[name, 'category']} noStyle><Input placeholder="请输入" /></Form.Item>
+                          <Form.Item name={[name, 'date']} noStyle><DatePicker placeholder="请选择" style={{ width: '100%' }} /></Form.Item>
+                          <Form.Item name={[name, 'level']} noStyle><Input placeholder="请选择" /></Form.Item>
+                          <Form.Item name={[name, 'returnDate']} noStyle><DatePicker placeholder="请选择" style={{ width: '100%' }} /></Form.Item>
+                          <Form.Item name={[name, 'drug']} noStyle><Input placeholder="请输入" /></Form.Item>
+                          <Button type="text" danger icon={<MinusCircleOutlined />} onClick={() => remove(name)} />
+                        </div>
+                      ))}
+                      <Button type="link" icon={<PlusSquareOutlined />} onClick={() => add()} size="small">添加记录</Button>
+                    </>
+                  )}
+                </Form.List>
+              </div>
             </Form>
           </>
         )
@@ -563,19 +593,40 @@ export default function PatientDetail() {
             onClickBody={() => setPreviewSection('neoadjuvant')}
             tag={<Tag color="blue" style={{ marginLeft: 8 }}>有更新</Tag>}
           >
-            {neoadjuvantData.records.map((record, idx) => (
+            {neoadjuvantData.courses.map((course, idx) => (
               <div key={idx} className="treatment-course">
                 <div className="course-header">
-                  <span className="course-name">{neoadjuvantEnumLabels.treatType[record.treatType]}</span>
+                  <span className="course-name">{course.name}</span>
                   <Space>
                     <Tooltip title="编辑"><Button type="text" size="small" icon={<EditOutlined />} onClick={e => e.stopPropagation()} /></Tooltip>
                   </Space>
                 </div>
                 <div className="course-meta">
-                  <span>时间：{record.date} ~ {record.endDate}</span>
-                  <span>疗效：{neoadjuvantEnumLabels.progressresult[record.progressresult]}</span>
-                  <span>完成疗程：{neoadjuvantEnumLabels.isComplete[record.isComplete]}</span>
+                  <span>治疗方案：{course.plan}</span>
+                  <span>治疗方式：{course.method}</span>
+                  <span>用药方式：{course.drugMethod}</span>
                 </div>
+                <Table columns={treatmentColumns} dataSource={course.drugs} pagination={false} size="small" bordered className="compact-table" />
+                <div className="sub-title">疗效评估</div>
+                <Table columns={evaluationColumns} dataSource={course.evaluations} pagination={false} size="small" bordered className="compact-table" />
+                <div className="ae-info">
+                  <span>有无III度及以上AE事件：{course.hasAE}</span>
+                </div>
+                <Table
+                  columns={[
+                    { title: '事件类型', dataIndex: 'type', key: 'type', width: 90 },
+                    { title: '类别', dataIndex: 'category', key: 'category' },
+                    { title: '发生日期', dataIndex: 'date', key: 'date', width: 110 },
+                    { title: '级别', dataIndex: 'level', key: 'level', width: 70 },
+                    { title: '转归日期', dataIndex: 'returnDate', key: 'returnDate', width: 110 },
+                    { title: '合并用药', dataIndex: 'drug', key: 'drug' },
+                  ]}
+                  dataSource={course.aeEvents}
+                  pagination={false}
+                  size="small"
+                  bordered
+                  className="compact-table"
+                />
               </div>
             ))}
           </Section>
@@ -612,8 +663,23 @@ export default function PatientDetail() {
             ))}
           </Section>
 
-          <Section title="辅助治疗" buttonText="辅助治疗" onAdd={() => openTreatment('adjuvant')} onClickBody={() => setPreviewSection('adjuvant')} hasData={false}>
-            <Empty description="暂无记录" image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          <Section title="辅助治疗" buttonText="辅助治疗" onAdd={() => openTreatment('adjuvant')} onClickBody={() => setPreviewSection('adjuvant')}>
+            {neoadjuvantData.courses.map((course, idx) => (
+              <div key={idx} className="treatment-course">
+                <div className="course-header">
+                  <span className="course-name">辅助治疗{idx + 1}</span>
+                  <Space>
+                    <Tooltip title="编辑"><Button type="text" size="small" icon={<EditOutlined />} onClick={e => e.stopPropagation()} /></Tooltip>
+                  </Space>
+                </div>
+                <div className="course-meta">
+                  <span>治疗方案：{course.plan}</span>
+                  <span>治疗方式：{course.method}</span>
+                  <span>用药方式：{course.drugMethod}</span>
+                </div>
+                <Table columns={treatmentColumns} dataSource={course.drugs} pagination={false} size="small" bordered className="compact-table" />
+              </div>
+            ))}
           </Section>
 
           <Section title="放疗记录" buttonText="放疗记录" onAdd={() => setRadiationOpen(true)} onClickBody={() => setPreviewSection('radiation')}>
@@ -646,8 +712,47 @@ export default function PatientDetail() {
             </div>
           </Section>
 
-          <Section title="解救治疗" buttonText="解救治疗" onAdd={() => openTreatment('salvage')} onClickBody={() => setPreviewSection('salvage')} hasData={false}>
-            <Empty description="暂无记录" image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          <Section title="解救治疗" buttonText="解救治疗" onAdd={() => openTreatment('salvage')} onClickBody={() => setPreviewSection('salvage')}>
+            {neoadjuvantData.courses.map((course, idx) => (
+              <div key={idx} className="treatment-course">
+                <div className="course-header">
+                  <span className="course-name">解救治疗{idx + 1}</span>
+                  <Space>
+                    <Tooltip title="编辑"><Button type="text" size="small" icon={<EditOutlined />} onClick={e => e.stopPropagation()} /></Tooltip>
+                  </Space>
+                </div>
+                <div className="course-meta">
+                  <span>治疗方案：{course.plan}</span>
+                  <span>治疗方式：{course.method}</span>
+                  <span>用药方式：静脉输注</span>
+                </div>
+                <Table columns={treatmentColumns} dataSource={course.drugs} pagination={false} size="small" bordered className="compact-table" />
+                <div className="sub-title">疗效评估</div>
+                <Table columns={evaluationColumns} dataSource={course.evaluations} pagination={false} size="small" bordered className="compact-table" />
+                <div className="ae-info"><span>有无III度及以上AE事件：{course.hasAE}</span></div>
+                <div className="ae-info"><span>III度及以上AE事件：血液毒性、肠胃毒性</span></div>
+                <Table
+                  columns={[
+                    { title: '事件类型', dataIndex: 'type', key: 'type', width: 90 },
+                    { title: '类别', dataIndex: 'category', key: 'category' },
+                    { title: '发生日期', dataIndex: 'date', key: 'date', width: 110 },
+                    { title: '级别', dataIndex: 'level', key: 'level', width: 70 },
+                    { title: '转归日期', dataIndex: 'returnDate', key: 'returnDate', width: 110 },
+                    { title: '合并用药', dataIndex: 'drug', key: 'drug' },
+                  ]}
+                  dataSource={[
+                    ...course.aeEvents,
+                    { key: '2', type: '血液毒性', category: 'xxxxxx', date: '2019-07-02', level: 'N/度', returnDate: '2019-07-02', drug: '卡铂他滨' },
+                    { key: '3', type: '肠胃毒性', category: 'xxxxxx', date: '2019-07-02', level: 'N/度', returnDate: '2019-07-02', drug: '卡铂他滨' },
+                    { key: '4', type: '肠胃毒性', category: 'xxxxxx', date: '2019-07-02', level: 'N/度', returnDate: '2019-07-02', drug: '卡铂他滨' },
+                  ]}
+                  pagination={false}
+                  size="small"
+                  bordered
+                  className="compact-table"
+                />
+              </div>
+            ))}
           </Section>
 
           <Section title="基因" buttonText="基因" onAdd={() => message.info('上传基因文件')} onClickBody={() => setPreviewSection('gene')}>
