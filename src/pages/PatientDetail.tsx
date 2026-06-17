@@ -12,11 +12,13 @@ import {
   Checkbox,
   DatePicker,
   Input,
+  Tabs,
   message,
 } from 'antd'
 import {
   EditOutlined,
   PlusSquareOutlined,
+  PlusOutlined,
   RightOutlined,
   PictureOutlined,
   DownloadOutlined,
@@ -379,6 +381,8 @@ export default function PatientDetail() {
   const [previewSection, setPreviewSection] = useState<PreviewSection>(null)
   const [isEditing, setIsEditing] = useState(false)
   const [editForm] = Form.useForm()
+  const [editTabs, setEditTabs] = useState(['1'])
+  const [editActiveTab, setEditActiveTab] = useState('1')
 
   const openTreatment = (type: 'neoadjuvant' | 'adjuvant' | 'salvage') => {
     setTreatmentType(type)
@@ -389,17 +393,35 @@ export default function PatientDetail() {
     setPreviewSection(null)
     setIsEditing(false)
     editForm.resetFields()
+    setEditTabs(['1'])
+    setEditActiveTab('1')
   }
 
   const handleEditCancel = () => {
     setIsEditing(false)
     editForm.resetFields()
+    setEditTabs(['1'])
+    setEditActiveTab('1')
   }
 
   const handleEditSave = () => {
     message.success('保存成功')
     setIsEditing(false)
     editForm.resetFields()
+    setEditTabs(['1'])
+    setEditActiveTab('1')
+  }
+
+  const addEditTab = () => {
+    const next = String(editTabs.length + 1)
+    setEditTabs([...editTabs, next])
+    setEditActiveTab(next)
+  }
+
+  const removeEditTab = (key: string) => {
+    const filtered = editTabs.filter(t => t !== key)
+    setEditTabs(filtered)
+    if (editActiveTab === key) setEditActiveTab(filtered[0])
   }
 
   const renderSectionForm = () => {
@@ -411,18 +433,25 @@ export default function PatientDetail() {
           </Form>
         )
       case 'neoadjuvant':
-        return (
-          <Form form={editForm} layout="vertical" onValuesChange={(changed) => neoadjuvantValuesChangeHandler(editForm, changed)}>
-            <NeoadjuvantFormFields form={editForm} />
-          </Form>
-        )
       case 'adjuvant':
-      case 'salvage':
+      case 'salvage': {
+        const treatLabel = previewSection === 'neoadjuvant' ? '新辅助治疗' : previewSection === 'adjuvant' ? '辅助治疗' : '解救治疗'
         return (
-          <Form form={editForm} layout="vertical">
-            <Empty description="暂无编辑表单" image={Empty.PRESENTED_IMAGE_SIMPLE} />
-          </Form>
+          <>
+            <Tabs
+              activeKey={editActiveTab}
+              onChange={setEditActiveTab}
+              type="editable-card"
+              onEdit={(key, action) => { if (action === 'add') addEditTab(); else removeEditTab(key as string) }}
+              items={editTabs.map(t => ({ key: t, label: `${treatLabel}${t}`, closable: editTabs.length > 1 }))}
+              tabBarExtraContent={<Button type="text" icon={<PlusOutlined />} onClick={addEditTab} size="small" />}
+            />
+            <Form form={editForm} layout="vertical" style={{ marginTop: 16 }} onValuesChange={(changed) => neoadjuvantValuesChangeHandler(editForm, changed)}>
+              <NeoadjuvantFormFields form={editForm} />
+            </Form>
+          </>
         )
+      }
       case 'surgery':
         return (
           <Form form={editForm} layout="vertical">

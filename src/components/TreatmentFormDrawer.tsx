@@ -1,4 +1,6 @@
-import { Drawer, Form, Button, message } from 'antd'
+import { Drawer, Form, Button, Tabs, message } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
+import { useState } from 'react'
 import MedicalImagePanel from './MedicalImagePanel'
 import NeoadjuvantFormFields, { neoadjuvantValuesChangeHandler } from './NeoadjuvantFormFields'
 
@@ -22,7 +24,21 @@ const patientDefaults = {
 
 export default function TreatmentFormDrawer({ open, onClose, type }: Props) {
   const [form] = Form.useForm()
+  const [tabs, setTabs] = useState(['1'])
+  const [activeTab, setActiveTab] = useState('1')
   const title = titleMap[type]
+
+  const addTab = () => {
+    const next = String(tabs.length + 1)
+    setTabs([...tabs, next])
+    setActiveTab(next)
+  }
+
+  const removeTab = (key: string) => {
+    const filtered = tabs.filter(t => t !== key)
+    setTabs(filtered)
+    if (activeTab === key) setActiveTab(filtered[0])
+  }
 
   const handleSave = async () => {
     try {
@@ -30,12 +46,16 @@ export default function TreatmentFormDrawer({ open, onClose, type }: Props) {
       console.log('treatment form data:', values)
       message.success('保存成功')
       form.resetFields()
+      setTabs(['1'])
+      setActiveTab('1')
       onClose()
     } catch { /* validation */ }
   }
 
   const handleClose = () => {
     form.resetFields()
+    setTabs(['1'])
+    setActiveTab('1')
     onClose()
   }
 
@@ -66,9 +86,27 @@ export default function TreatmentFormDrawer({ open, onClose, type }: Props) {
     >
       <MedicalImagePanel />
       <div style={{ flex: 1, padding: '20px 24px', overflowY: 'auto' }}>
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          type="editable-card"
+          onEdit={(key, action) => {
+            if (action === 'add') addTab()
+            else removeTab(key as string)
+          }}
+          items={tabs.map(t => ({
+            key: t,
+            label: `${title}${t}`,
+            closable: tabs.length > 1,
+          }))}
+          tabBarExtraContent={
+            <Button type="text" icon={<PlusOutlined />} onClick={addTab} size="small" />
+          }
+        />
         <Form
           form={form}
           layout="vertical"
+          style={{ marginTop: 16 }}
           onValuesChange={(changed) => neoadjuvantValuesChangeHandler(form, changed)}
         >
           <NeoadjuvantFormFields form={form} />
