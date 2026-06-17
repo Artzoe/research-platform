@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "/Users/wenhua/research-platform/node_modules/.bin/vite",
+      "runtimeArgs": ["--root", "/Users/wenhua/research-platform", "--port", "5173"],
+      "port": 5173
+    }
+  ]
+}

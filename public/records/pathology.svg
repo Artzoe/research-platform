@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 918" width="600" height="918">
+  <rect width="600" height="918" fill="#FFFDF7"/>
+  <rect x="30" y="20" width="540" height="878" rx="2" fill="none" stroke="#d4c5a0" stroke-width="1"/>
+  <text x="300" y="65" text-anchor="middle" font-size="20" fill="#c0392b" font-weight="bold" font-family="serif">XX大学附属医院</text>
+  <line x1="50" y1="80" x2="550" y2="80" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="300" y="115" text-anchor="middle" font-size="18" fill="#1a1a2e" font-weight="bold">病理检查报告</text>
+  <line x1="50" y1="130" x2="550" y2="130" stroke="#e0d5b8" stroke-width="0.5"/>
+  <text x="60" y="155" font-size="12" fill="#888">科 室：病理科</text>
+  <text x="300" y="155" font-size="12" fill="#888">日 期：2022年7月12日</text>
+  <line x1="50" y1="170" x2="550" y2="170" stroke="#e0d5b8" stroke-width="0.5"/>
+  <text x="60" y="210" font-size="13" fill="#888">姓 名：</text><text x="180" y="210" font-size="14" fill="#333">欧阳*健</text>
+<text x="60" y="236" font-size="13" fill="#888">性 别：</text><text x="180" y="236" font-size="14" fill="#333">女</text><text x="340" y="236" font-size="13" fill="#888">年 龄：</text><text x="440" y="236" font-size="14" fill="#333">47岁</text>
+<text x="60" y="262" font-size="13" fill="#888">病案号：</text><text x="180" y="262" font-size="14" fill="#333">2334455</text>
+<text x="60" y="288" font-size="13" fill="#888">送检科室：</text><text x="180" y="288" font-size="14" fill="#333">乳腺外科</text>
+<line x1="50" y1="306" x2="550" y2="306" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="326" font-size="15" fill="#1a1a2e" font-weight="bold">大体所见</text>
+<text x="60" y="356" font-size="14" fill="#333">左乳穿刺标本：灰白色穿刺组织2条，长约1.0-1.5cm，</text>
+<text x="60" y="384" font-size="14" fill="#333">直径0.1cm，全部取材。</text>
+<line x1="50" y1="404" x2="550" y2="404" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="424" font-size="15" fill="#1a1a2e" font-weight="bold">镜下所见</text>
+<text x="60" y="454" font-size="14" fill="#333">穿刺组织中见浸润性癌巢，癌细胞呈条索状、腺管状</text>
+<text x="60" y="482" font-size="14" fill="#333">排列，间质纤维结缔组织增生伴慢性炎细胞浸润。</text>
+<line x1="50" y1="502" x2="550" y2="502" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="522" font-size="15" fill="#1a1a2e" font-weight="bold">病理诊断</text>
+<text x="60" y="552" font-size="14" fill="#333">（左乳穿刺）浸润性导管癌，Ⅱ级</text>
+<text x="60" y="580" font-size="14" fill="#333">组织学分级：Nottingham评分 6分（腺管 2分 + 核分裂 2分</text>
+<text x="60" y="608" font-size="14" fill="#333">  + 多形性 2分）</text>
+<line x1="50" y1="628" x2="550" y2="628" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="648" font-size="15" fill="#1a1a2e" font-weight="bold">免疫组化</text>
+<text x="60" y="678" font-size="13" fill="#888">ER：</text><text x="180" y="678" font-size="14" fill="#333">3+（80%）</text><text x="340" y="678" font-size="13" fill="#888">PR：</text><text x="440" y="678" font-size="14" fill="#333">2+（45%）</text>
+<text x="60" y="704" font-size="13" fill="#888">HER-2：</text><text x="180" y="704" font-size="14" fill="#333">2+</text><text x="340" y="704" font-size="13" fill="#888">Ki-67：</text><text x="440" y="704" font-size="14" fill="#333">30%</text>
+<text x="60" y="730" font-size="13" fill="#888">FISH：</text><text x="180" y="730" font-size="14" fill="#333">扩增（比值 2.3）</text>
+<text x="60" y="756" font-size="13" fill="#888">CK5/6：</text><text x="180" y="756" font-size="14" fill="#333">（-）</text>
+<text x="60" y="782" font-size="13" fill="#888">P63：</text><text x="180" y="782" font-size="14" fill="#333">（-）</text>
+
+  <line x1="50" y1="828" x2="550" y2="828" stroke="#e0d5b8" stroke-width="0.5"/>
+  <text x="380" y="853" font-size="13" fill="#888">报告医师：</text>
+  <text x="455" y="853" font-size="14" fill="#333">张明华</text>
+  <text x="380" y="876" font-size="13" fill="#888">审核医师：</text>
+  <text x="455" y="876" font-size="14" fill="#333">李建国</text>
+</svg>

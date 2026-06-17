@@ -1,0 +1,116 @@
+.patient-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Page Header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.breadcrumb {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.breadcrumb-link {
+  color: #1677ff;
+  cursor: pointer;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-sep {
+  margin: 0 6px;
+  color: #ccc;
+}
+
+.breadcrumb-current {
+  color: #999;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.page-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.patient-count {
+  font-size: 13px;
+  color: #999;
+  white-space: nowrap;
+}
+
+/* Filter Bar */
+.filter-bar {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  flex-wrap: wrap;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Table Card */
+.patient-table-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 4px 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+
+.patient-table-card .ant-table {
+  border-radius: 10px;
+}
+
+.patient-table-card .ant-table-thead > tr > th {
+  background: #fafafa;
+  font-weight: 600;
+  font-size: 13px;
+  color: #666;
+}
+
+.patient-table-card .ant-table-tbody > tr:hover > td {
+  background: #f0f5ff;
+}
+
+.patient-table-card .ant-pagination {
+  padding: 12px 16px;
+}

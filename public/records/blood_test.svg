@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 810" width="600" height="810">
+  <rect width="600" height="810" fill="#FFFDF7"/>
+  <rect x="30" y="20" width="540" height="770" rx="2" fill="none" stroke="#d4c5a0" stroke-width="1"/>
+  <text x="300" y="65" text-anchor="middle" font-size="20" fill="#c0392b" font-weight="bold" font-family="serif">XX大学附属医院</text>
+  <line x1="50" y1="80" x2="550" y2="80" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="300" y="115" text-anchor="middle" font-size="18" fill="#1a1a2e" font-weight="bold">检验报告单</text>
+  <line x1="50" y1="130" x2="550" y2="130" stroke="#e0d5b8" stroke-width="0.5"/>
+  <text x="60" y="155" font-size="12" fill="#888">科 室：检验科</text>
+  <text x="300" y="155" font-size="12" fill="#888">日 期：2022年7月12日</text>
+  <line x1="50" y1="170" x2="550" y2="170" stroke="#e0d5b8" stroke-width="0.5"/>
+  <text x="60" y="210" font-size="13" fill="#888">姓 名：</text><text x="180" y="210" font-size="14" fill="#333">欧阳*健</text>
+<text x="60" y="236" font-size="13" fill="#888">性 别：</text><text x="180" y="236" font-size="14" fill="#333">女</text><text x="340" y="236" font-size="13" fill="#888">年 龄：</text><text x="440" y="236" font-size="14" fill="#333">47岁</text>
+<text x="60" y="262" font-size="13" fill="#888">标本类型：</text><text x="180" y="262" font-size="14" fill="#333">静脉血</text>
+<line x1="50" y1="280" x2="550" y2="280" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="300" font-size="15" fill="#1a1a2e" font-weight="bold">血常规</text>
+<text x="60" y="330" font-size="13" fill="#888">WBC：</text><text x="180" y="330" font-size="14" fill="#333">6.8×10⁹/L</text><text x="340" y="330" font-size="13" fill="#888">参考值：</text><text x="440" y="330" font-size="14" fill="#333">4.0-10.0</text>
+<text x="60" y="356" font-size="13" fill="#888">RBC：</text><text x="180" y="356" font-size="14" fill="#333">4.12×10¹²/L</text><text x="340" y="356" font-size="13" fill="#888">参考值：</text><text x="440" y="356" font-size="14" fill="#333">3.5-5.0</text>
+<text x="60" y="382" font-size="13" fill="#888">HGB：</text><text x="180" y="382" font-size="14" fill="#333">128 g/L</text><text x="340" y="382" font-size="13" fill="#888">参考值：</text><text x="440" y="382" font-size="14" fill="#333">110-150</text>
+<text x="60" y="408" font-size="13" fill="#888">PLT：</text><text x="180" y="408" font-size="14" fill="#333">245×10⁹/L</text><text x="340" y="408" font-size="13" fill="#888">参考值：</text><text x="440" y="408" font-size="14" fill="#333">100-300</text>
+<text x="60" y="434" font-size="13" fill="#888">NEU%：</text><text x="180" y="434" font-size="14" fill="#333">62.3%</text><text x="340" y="434" font-size="13" fill="#888">参考值：</text><text x="440" y="434" font-size="14" fill="#333">50-70</text>
+<line x1="50" y1="452" x2="550" y2="452" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="472" font-size="15" fill="#1a1a2e" font-weight="bold">肝功能</text>
+<text x="60" y="502" font-size="13" fill="#888">ALT：</text><text x="180" y="502" font-size="14" fill="#333">23 U/L</text><text x="340" y="502" font-size="13" fill="#888">参考值：</text><text x="440" y="502" font-size="14" fill="#333">0-40</text>
+<text x="60" y="528" font-size="13" fill="#888">AST：</text><text x="180" y="528" font-size="14" fill="#333">19 U/L</text><text x="340" y="528" font-size="13" fill="#888">参考值：</text><text x="440" y="528" font-size="14" fill="#333">0-40</text>
+<text x="60" y="554" font-size="13" fill="#888">ALB：</text><text x="180" y="554" font-size="14" fill="#333">42.5 g/L</text><text x="340" y="554" font-size="13" fill="#888">参考值：</text><text x="440" y="554" font-size="14" fill="#333">35-55</text>
+<line x1="50" y1="572" x2="550" y2="572" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="592" font-size="15" fill="#1a1a2e" font-weight="bold">肿瘤标志物</text>
+<text x="60" y="622" font-size="13" fill="#888">CA153：</text><text x="180" y="622" font-size="14" fill="#333">12.6 U/mL</text><text x="340" y="622" font-size="13" fill="#888">参考值：</text><text x="440" y="622" font-size="14" fill="#333"><25</text>
+<text x="60" y="648" font-size="13" fill="#888">CEA：</text><text x="180" y="648" font-size="14" fill="#333">2.3 ng/mL</text><text x="340" y="648" font-size="13" fill="#888">参考值：</text><text x="440" y="648" font-size="14" fill="#333"><5</text>
+<text x="60" y="674" font-size="13" fill="#888">CA125：</text><text x="180" y="674" font-size="14" fill="#333">18.4 U/mL</text><text x="340" y="674" font-size="13" fill="#888">参考值：</text><text x="440" y="674" font-size="14" fill="#333"><35</text>
+
+  <line x1="50" y1="720" x2="550" y2="720" stroke="#e0d5b8" stroke-width="0.5"/>
+  <text x="380" y="745" font-size="13" fill="#888">报告医师：</text>
+  <text x="455" y="745" font-size="14" fill="#333">赵伟</text>
+  <text x="380" y="768" font-size="13" fill="#888">审核医师：</text>
+  <text x="455" y="768" font-size="14" fill="#333">李建国</text>
+</svg>

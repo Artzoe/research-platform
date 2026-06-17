@@ -1,0 +1,314 @@
+.patient-detail-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.detail-breadcrumb {
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.detail-breadcrumb .breadcrumb-link {
+  color: #1677ff;
+  cursor: pointer;
+}
+
+.detail-breadcrumb .breadcrumb-link:hover { text-decoration: underline; }
+.detail-breadcrumb .breadcrumb-sep { margin: 0 8px; color: #ccc; }
+.detail-breadcrumb .breadcrumb-current { color: #999; }
+
+/* Layout */
+.detail-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Left Panel */
+.detail-left {
+  width: 270px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  position: sticky;
+  top: 0;
+}
+
+.patient-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.patient-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.edit-btn {
+  margin-bottom: 16px;
+  border-style: dashed;
+}
+
+.medical-images-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f8f9fb;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background 0.2s;
+}
+
+.medical-images-entry:hover { background: #f0f2f5; }
+
+.images-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background: #eef1f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.images-info {
+  flex: 1;
+}
+
+.images-count {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1677ff;
+  margin-right: 6px;
+}
+
+.images-label {
+  font-size: 13px;
+  color: #999;
+}
+
+.patient-info-list {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 16px;
+}
+
+.info-row {
+  display: flex;
+  font-size: 13px;
+  line-height: 2;
+}
+
+.info-label {
+  color: #999;
+  flex-shrink: 0;
+  width: 90px;
+}
+
+.info-value {
+  color: #333;
+  word-break: break-all;
+}
+
+.patient-timestamps .info-row {
+  font-size: 12px;
+}
+
+.patient-timestamps .info-label {
+  color: #bbb;
+}
+
+.patient-timestamps .info-value {
+  color: #999;
+}
+
+/* Right Panel */
+.detail-right {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Section */
+.detail-section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title-bar {
+  width: 4px;
+  height: 20px;
+  border-radius: 2px;
+  background: #1677ff;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+/* Diagnosis Grid */
+.diagnosis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 24px;
+}
+
+.diag-row {
+  font-size: 13px;
+  line-height: 2;
+  display: flex;
+}
+
+.diag-label {
+  color: #999;
+  flex-shrink: 0;
+}
+
+.diag-row span:last-child {
+  color: #333;
+}
+
+/* Treatment Course */
+.treatment-course {
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.course-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.course-meta {
+  display: flex;
+  gap: 24px;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.compact-table {
+  margin-bottom: 12px;
+}
+
+.compact-table .ant-table-thead > tr > th {
+  background: #fafafa;
+  font-size: 12px;
+  padding: 6px 12px;
+  color: #999;
+}
+
+.compact-table .ant-table-tbody > tr > td {
+  font-size: 13px;
+  padding: 6px 12px;
+}
+
+.sub-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  margin: 12px 0 8px;
+}
+
+.ae-info {
+  font-size: 13px;
+  color: #666;
+  margin: 8px 0;
+}
+
+/* Surgery & Radiation Records */
+.surgery-record,
+.radiation-record {
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.record-date-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.record-date {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Drawer form styles */
+.section-body.clickable {
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.section-body.clickable:hover {
+  background: #f8f9fb;
+}
+
+.preview-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.preview-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.drawer-form-section {
+  margin-bottom: 24px;
+}
+
+.drawer-form-section .section-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1677ff;
+  margin-bottom: 12px;
+  display: block;
+}

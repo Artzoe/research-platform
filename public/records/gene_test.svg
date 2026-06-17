@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 912" width="600" height="912">
+  <rect width="600" height="912" fill="#FFFDF7"/>
+  <rect x="30" y="20" width="540" height="872" rx="2" fill="none" stroke="#d4c5a0" stroke-width="1"/>
+  <text x="300" y="65" text-anchor="middle" font-size="20" fill="#c0392b" font-weight="bold" font-family="serif">XX大学附属医院</text>
+  <line x1="50" y1="80" x2="550" y2="80" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="300" y="115" text-anchor="middle" font-size="18" fill="#1a1a2e" font-weight="bold">基因检测报告</text>
+  <line x1="50" y1="130" x2="550" y2="130" stroke="#e0d5b8" stroke-width="0.5"/>
+  <text x="60" y="155" font-size="12" fill="#888">科 室：分子病理中心</text>
+  <text x="300" y="155" font-size="12" fill="#888">日 期：2022年7月10日</text>
+  <line x1="50" y1="170" x2="550" y2="170" stroke="#e0d5b8" stroke-width="0.5"/>
+  <text x="60" y="210" font-size="13" fill="#888">姓 名：</text><text x="180" y="210" font-size="14" fill="#333">欧阳*健</text>
+<text x="60" y="236" font-size="13" fill="#888">标本类型：</text><text x="180" y="236" font-size="14" fill="#333">FFPE组织</text>
+<text x="60" y="262" font-size="13" fill="#888">检测方法：</text><text x="180" y="262" font-size="14" fill="#333">NGS高通量测序</text>
+<line x1="50" y1="280" x2="550" y2="280" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="300" font-size="15" fill="#1a1a2e" font-weight="bold">BRCA1/2基因检测</text>
+<text x="60" y="330" font-size="13" fill="#888">BRCA1：</text><text x="180" y="330" font-size="14" fill="#333">c.5266dupC (p.Q1756Pfs*74)</text>
+<text x="60" y="356" font-size="13" fill="#888">致病性判定：</text><text x="180" y="356" font-size="14" fill="#333">致病性突变</text>
+<text x="60" y="382" font-size="13" fill="#888">BRCA2：</text><text x="180" y="382" font-size="14" fill="#333">未检出致病性变异</text>
+<line x1="50" y1="400" x2="550" y2="400" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="420" font-size="15" fill="#1a1a2e" font-weight="bold">其他基因变异</text>
+<text x="60" y="450" font-size="13" fill="#888">PIK3CA：</text><text x="180" y="450" font-size="14" fill="#333">p.H1047R 突变（频率 32%）</text>
+<text x="60" y="476" font-size="13" fill="#888">TP53：</text><text x="180" y="476" font-size="14" fill="#333">p.R248W 突变（频率 45%）</text>
+<text x="60" y="502" font-size="13" fill="#888">PTEN：</text><text x="180" y="502" font-size="14" fill="#333">未检出</text>
+<text x="60" y="528" font-size="13" fill="#888">CDH1：</text><text x="180" y="528" font-size="14" fill="#333">未检出</text>
+<line x1="50" y1="546" x2="550" y2="546" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="566" font-size="15" fill="#1a1a2e" font-weight="bold">用药建议</text>
+<text x="60" y="596" font-size="14" fill="#333">1. BRCA1致病突变阳性，可考虑PARP抑制剂治疗</text>
+<text x="60" y="624" font-size="14" fill="#333">   （奥拉帕利）</text>
+<text x="60" y="652" font-size="14" fill="#333">2. PIK3CA突变阳性，可考虑PI3K抑制剂</text>
+<text x="60" y="680" font-size="14" fill="#333">3. 建议家族成员进行遗传咨询及基因检测</text>
+<line x1="50" y1="700" x2="550" y2="700" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="720" font-size="15" fill="#1a1a2e" font-weight="bold">微卫星稳定性</text>
+<text x="60" y="750" font-size="13" fill="#888">MSI状态：</text><text x="180" y="750" font-size="14" fill="#333">MSS（微卫星稳定）</text>
+<text x="60" y="776" font-size="13" fill="#888">TMB：</text><text x="180" y="776" font-size="14" fill="#333">4.2 Muts/Mb（低）</text>
+
+  <line x1="50" y1="822" x2="550" y2="822" stroke="#e0d5b8" stroke-width="0.5"/>
+  <text x="380" y="847" font-size="13" fill="#888">报告医师：</text>
+  <text x="455" y="847" font-size="14" fill="#333">周建国</text>
+  <text x="380" y="870" font-size="13" fill="#888">审核医师：</text>
+  <text x="455" y="870" font-size="14" fill="#333">李建国</text>
+</svg>

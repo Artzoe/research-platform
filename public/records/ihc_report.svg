@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 892" width="600" height="892">
+  <rect width="600" height="892" fill="#FFFDF7"/>
+  <rect x="30" y="20" width="540" height="852" rx="2" fill="none" stroke="#d4c5a0" stroke-width="1"/>
+  <text x="300" y="65" text-anchor="middle" font-size="20" fill="#c0392b" font-weight="bold" font-family="serif">XX大学附属医院</text>
+  <line x1="50" y1="80" x2="550" y2="80" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="300" y="115" text-anchor="middle" font-size="18" fill="#1a1a2e" font-weight="bold">免疫组化报告</text>
+  <line x1="50" y1="130" x2="550" y2="130" stroke="#e0d5b8" stroke-width="0.5"/>
+  <text x="60" y="155" font-size="12" fill="#888">科 室：病理科</text>
+  <text x="300" y="155" font-size="12" fill="#888">日 期：2022年7月10日</text>
+  <line x1="50" y1="170" x2="550" y2="170" stroke="#e0d5b8" stroke-width="0.5"/>
+  <text x="60" y="210" font-size="13" fill="#888">姓 名：</text><text x="180" y="210" font-size="14" fill="#333">欧阳*健</text>
+<text x="60" y="236" font-size="13" fill="#888">病案号：</text><text x="180" y="236" font-size="14" fill="#333">2334455</text>
+<text x="60" y="262" font-size="13" fill="#888">标本来源：</text><text x="180" y="262" font-size="14" fill="#333">左乳保乳术后标本</text>
+<line x1="50" y1="280" x2="550" y2="280" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="300" font-size="15" fill="#1a1a2e" font-weight="bold">免疫组化结果</text>
+<text x="60" y="330" font-size="13" fill="#888">ER：</text><text x="180" y="330" font-size="14" fill="#333">(+++) 80%</text><text x="340" y="330" font-size="13" fill="#888">  判定：</text><text x="440" y="330" font-size="14" fill="#333">阳性</text>
+<text x="60" y="356" font-size="13" fill="#888">PR：</text><text x="180" y="356" font-size="14" fill="#333">(++) 45%</text><text x="340" y="356" font-size="13" fill="#888">  判定：</text><text x="440" y="356" font-size="14" fill="#333">阳性</text>
+<text x="60" y="382" font-size="13" fill="#888">HER-2：</text><text x="180" y="382" font-size="14" fill="#333">(++) 2+</text><text x="340" y="382" font-size="13" fill="#888">  判定：</text><text x="440" y="382" font-size="14" fill="#333">不确定</text>
+<text x="60" y="408" font-size="13" fill="#888">Ki-67：</text><text x="180" y="408" font-size="14" fill="#333">阳性指数约 30%</text>
+<text x="60" y="434" font-size="13" fill="#888">P53：</text><text x="180" y="434" font-size="14" fill="#333">突变型</text><text x="340" y="434" font-size="13" fill="#888">  阳性率：</text><text x="440" y="434" font-size="14" fill="#333">约70%</text>
+<text x="60" y="460" font-size="13" fill="#888">CK5/6：</text><text x="180" y="460" font-size="14" fill="#333">(-)</text><text x="340" y="460" font-size="13" fill="#888">  EGFR：</text><text x="440" y="460" font-size="14" fill="#333">(-)</text>
+<text x="60" y="486" font-size="13" fill="#888">AR：</text><text x="180" y="486" font-size="14" fill="#333">(+) 40%</text><text x="340" y="486" font-size="13" fill="#888">  P63：</text><text x="440" y="486" font-size="14" fill="#333">(-)</text>
+<text x="60" y="512" font-size="13" fill="#888">CK14：</text><text x="180" y="512" font-size="14" fill="#333">(-)</text><text x="340" y="512" font-size="13" fill="#888">  SMA：</text><text x="440" y="512" font-size="14" fill="#333">(-)</text>
+<line x1="50" y1="530" x2="550" y2="530" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="550" font-size="15" fill="#1a1a2e" font-weight="bold">FISH检测</text>
+<text x="60" y="580" font-size="13" fill="#888">HER2基因：</text><text x="180" y="580" font-size="14" fill="#333">扩增</text>
+<text x="60" y="606" font-size="13" fill="#888">HER2/CEP17：</text><text x="180" y="606" font-size="14" fill="#333">比值 2.3</text>
+<text x="60" y="632" font-size="13" fill="#888">HER2拷贝数：</text><text x="180" y="632" font-size="14" fill="#333">平均 8.6 个/细胞</text>
+<text x="60" y="658" font-size="13" fill="#888">CEP17拷贝数：</text><text x="180" y="658" font-size="14" fill="#333">平均 3.7 个/细胞</text>
+<line x1="50" y1="676" x2="550" y2="676" stroke="#ccc" stroke-width="0.5"/>
+<text x="60" y="696" font-size="15" fill="#1a1a2e" font-weight="bold">分子分型</text>
+<text x="60" y="726" font-size="14" fill="#333">Luminal B型（HER2阳性）</text>
+<text x="60" y="754" font-size="14" fill="#333">建议行抗HER2靶向治疗联合化疗</text>
+
+  <line x1="50" y1="802" x2="550" y2="802" stroke="#e0d5b8" stroke-width="0.5"/>
+  <text x="380" y="827" font-size="13" fill="#888">报告医师：</text>
+  <text x="455" y="827" font-size="14" fill="#333">张明华</text>
+  <text x="380" y="850" font-size="13" fill="#888">审核医师：</text>
+  <text x="455" y="850" font-size="14" fill="#333">李建国</text>
+</svg>
