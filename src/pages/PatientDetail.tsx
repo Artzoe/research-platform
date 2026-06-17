@@ -14,6 +14,9 @@ import {
   Input,
   Tabs,
   message,
+  Select,
+  InputNumber,
+  Radio,
 } from 'antd'
 import {
   EditOutlined,
@@ -331,6 +334,7 @@ export default function PatientDetail() {
   const [editForm] = Form.useForm()
   const [editTabs, setEditTabs] = useState(['1'])
   const [editActiveTab, setEditActiveTab] = useState('1')
+  const editCompletedPlan = Form.useWatch('completedPlan', editForm)
 
   const openTreatment = (type: 'neoadjuvant' | 'adjuvant' | 'salvage') => {
     setTreatmentType(type)
@@ -398,14 +402,14 @@ export default function PatientDetail() {
             <Form form={editForm} layout="vertical" style={{ marginTop: 16 }}>
               <div className="drawer-form-section"><span className="section-label">治疗方案</span><Form.Item name="plan"><Input placeholder="请输入" /></Form.Item></div>
               <div className="drawer-form-section"><span className="section-label">治疗方式</span><Form.Item name="method"><Checkbox.Group options={methodOptions} /></Form.Item></div>
-              <div className="drawer-form-section"><span className="section-label">用药方式</span><Form.Item name="drugMethod"><Checkbox.Group options={['静脉输注', '口服', '组合']} /></Form.Item></div>
+              <div className="drawer-form-section"><span className="section-label">用药记录</span></div>
               <Form.List name="sessions">
                 {(fields, { add, remove }) => (
                   <>
                     {fields.map(({ key, name }) => (
                       <div key={key} style={{ border: '1px solid #f0f0f0', borderRadius: 8, padding: 16, marginBottom: 12 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                          <div style={{ background: '#fafafa', padding: '4px 12px', borderRadius: 4, fontSize: 13 }}>第{name + 1}次输注</div>
+                          <div style={{ background: '#fafafa', padding: '4px 12px', borderRadius: 4, fontSize: 13 }}>第{name + 1}次</div>
                           <Form.Item name={[name, 'date']} noStyle><DatePicker placeholder="请选择" style={{ flex: 1 }} /></Form.Item>
                           <Button type="text" danger icon={<MinusCircleOutlined />} onClick={() => remove(name)} />
                         </div>
@@ -419,6 +423,18 @@ export default function PatientDetail() {
                                   <Form.Item name={[dn, 'name']} noStyle><Input placeholder="请输入" /></Form.Item>
                                   <div style={{ background: '#fafafa', padding: '4px 8px', borderRadius: 4, fontSize: 13, flexShrink: 0 }}>剂量</div>
                                   <Form.Item name={[dn, 'dose']} noStyle><Input placeholder="请输入" style={{ width: 100 }} /></Form.Item>
+                                  <Form.Item name={[dn, 'doseUnit']} noStyle>
+                                    <Select placeholder="单位" style={{ width: 90 }} options={[
+                                      { value: 'mg', label: 'mg' },
+                                      { value: 'mg/m²', label: 'mg/m²' },
+                                      { value: 'mg/kg', label: 'mg/kg' },
+                                      { value: 'g', label: 'g' },
+                                      { value: 'ml', label: 'ml' },
+                                      { value: 'μg', label: 'μg' },
+                                      { value: 'IU', label: 'IU' },
+                                      { value: 'AUC', label: 'AUC' },
+                                    ]} />
+                                  </Form.Item>
                                   <Button type="text" danger icon={<MinusCircleOutlined />} onClick={() => drugOps.remove(dn)} />
                                 </div>
                               ))}
@@ -428,7 +444,7 @@ export default function PatientDetail() {
                         </Form.List>
                       </div>
                     ))}
-                    <Button type="link" icon={<PlusSquareOutlined />} onClick={() => add({ drugs: [{}] })} block style={{ marginBottom: 24 }}>添加输注时间</Button>
+                    <Button type="link" icon={<PlusSquareOutlined />} onClick={() => add({ drugs: [{}] })} block style={{ marginBottom: 24 }}>添加用药时间</Button>
                   </>
                 )}
               </Form.List>
@@ -453,30 +469,51 @@ export default function PatientDetail() {
                   )}
                 </Form.List>
               </div>
-              <div className="drawer-form-section"><span className="section-label">有无III度及以上AE事件</span><Form.Item name="hasAE"><Checkbox.Group options={['有', '无']} /></Form.Item></div>
-              <div className="drawer-form-section"><span className="section-label">III度及以上AE事件</span><Form.Item name="aeTypes"><Checkbox.Group><Checkbox value="血液毒性">血液毒性</Checkbox><Checkbox value="肠胃毒性">肠胃毒性</Checkbox><Checkbox value="item03">item03</Checkbox><Checkbox value="item04">item04</Checkbox><Checkbox value="item05">item05</Checkbox><Checkbox value="item06">item06</Checkbox></Checkbox.Group></Form.Item></div>
               <div className="drawer-form-section">
-                <span className="section-label">血液毒性</span>
-                <Form.List name="aeDetails">
-                  {(fields, { add, remove }) => (
-                    <>
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 0.8fr 1fr 1.2fr 40px', gap: 8, marginBottom: 8 }}>
-                        <div style={{ fontSize: 12, color: '#999' }}>类别</div><div style={{ fontSize: 12, color: '#999' }}>发生日期</div><div style={{ fontSize: 12, color: '#999' }}>级别</div><div style={{ fontSize: 12, color: '#999' }}>转归日期</div><div style={{ fontSize: 12, color: '#999' }}>合并用药</div><div />
-                      </div>
-                      {fields.map(({ key, name }) => (
-                        <div key={key} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 0.8fr 1fr 1.2fr 40px', gap: 8, marginBottom: 8 }}>
-                          <Form.Item name={[name, 'category']} noStyle><Input placeholder="请输入" /></Form.Item>
-                          <Form.Item name={[name, 'date']} noStyle><DatePicker placeholder="请选择" style={{ width: '100%' }} /></Form.Item>
-                          <Form.Item name={[name, 'level']} noStyle><Input placeholder="请选择" /></Form.Item>
-                          <Form.Item name={[name, 'returnDate']} noStyle><DatePicker placeholder="请选择" style={{ width: '100%' }} /></Form.Item>
-                          <Form.Item name={[name, 'drug']} noStyle><Input placeholder="请输入" /></Form.Item>
-                          <Button type="text" danger icon={<MinusCircleOutlined />} onClick={() => remove(name)} />
-                        </div>
-                      ))}
-                      <Button type="link" icon={<PlusSquareOutlined />} onClick={() => add()} size="small">添加记录</Button>
-                    </>
-                  )}
-                </Form.List>
+                <span className="section-label">是否完成计划疗程</span>
+                <Form.Item name="completedPlan">
+                  <Radio.Group>
+                    <Radio value="是">是</Radio>
+                    <Radio value="否">否</Radio>
+                  </Radio.Group>
+                </Form.Item>
+              </div>
+
+              {editCompletedPlan === '否' && (
+                <div className="drawer-form-section">
+                  <span className="section-label">原因</span>
+                  <Form.Item name="incompletionReason">
+                    <Checkbox.Group options={['TTP', 'TTF', '其他']} />
+                  </Form.Item>
+                </div>
+              )}
+
+              <div style={{ display: 'flex', gap: 24 }}>
+                <div className="drawer-form-section" style={{ flex: 1 }}>
+                  <span className="section-label">身高（CM）</span>
+                  <Form.Item name="height">
+                    <InputNumber placeholder="请输入" style={{ width: '100%' }} min={0} />
+                  </Form.Item>
+                </div>
+                <div className="drawer-form-section" style={{ flex: 1 }}>
+                  <span className="section-label">体重（KG）</span>
+                  <Form.Item name="weight">
+                    <InputNumber placeholder="请输入" style={{ width: '100%' }} min={0} />
+                  </Form.Item>
+                </div>
+              </div>
+
+              <div className="drawer-form-section">
+                <span className="section-label">PS（分）</span>
+                <Form.Item name="psScore">
+                  <Radio.Group>
+                    <Radio value={0}>0</Radio>
+                    <Radio value={1}>1</Radio>
+                    <Radio value={2}>2</Radio>
+                    <Radio value={3}>3</Radio>
+                    <Radio value={4}>4</Radio>
+                  </Radio.Group>
+                </Form.Item>
               </div>
             </Form>
           </>
