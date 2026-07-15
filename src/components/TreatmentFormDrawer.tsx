@@ -1,4 +1,4 @@
-import { Drawer, Form, Input, Checkbox, DatePicker, Button, Tabs, Space, message, Select, InputNumber, Radio } from 'antd'
+import { Drawer, Form, Input, Checkbox, DatePicker, Button, Tabs, message, Select, InputNumber, Radio } from 'antd'
 import { PlusOutlined, MinusCircleOutlined, PlusSquareOutlined } from '@ant-design/icons'
 import { useState } from 'react'
 import MedicalImagePanel from './MedicalImagePanel'
