@@ -7,7 +7,7 @@ import './App.css'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/research-platform">
       <Routes>
         <Route path="/" element={<Login />} />
         <Route element={<MainLayout />}>
